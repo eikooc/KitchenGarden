@@ -1,0 +1,33 @@
+/* generic selectors */
+body {
+    font-size: 14px;
+    color: #333333;
+    background-color: #F9F9F9;
+}
+
+p {
+    width: 80%;
+}
+
+li {
+    list-style-type: none;
+    line-height: 150%;
+}
+
+h1 {
+    font-size: 2em;
+}
+
+h2 {
+    font-size: 1em;
+}
+
+/* pseudo classes */
+
+/* ID's */
+#container
+{
+	margin: 0 auto;
+	width: 600px;
+	background:#fff;
+}
