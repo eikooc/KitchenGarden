@@ -23,6 +23,46 @@ h2 {
 }
 
 /* pseudo classes */
+.head {
+    overflow: auto;
+    padding: 10px;
+    background: #e0f4ff;
+    font-size: 1em;
+    color: #b9becd;
+}
+
+.header #bluetoothStatus {
+    display: inline;
+    float: right;
+    vertical-align: bottom;
+    text-align: bottom;
+    position: right fixed;
+    width: 110px;
+    height: 110px;
+    background: url("../assets/bluetoothOff.png") no-repeat;
+    background-size: 100px;
+    vertical-align:text-bottom;
+}
+
+.header #logo {
+    display: block;
+    float: left;
+    width: 160px;
+    height: 160px;
+    margin-right: 20px;
+    background: url("../assets/bg.png") no-repeat;
+    background-size: 160px;
+    border-radius: 100%;
+}
+
+.inset-text {
+    /* Shadows are visible under slightly transparent text color */
+    color: rgba(10,60,150, 0.8);
+    text-shadow: 1px 4px 6px #e0f4ff, 0 0 0 #000, 1px 4px 6px #e0f4ff;
+}
+/* Don't show shadows when selecting text */
+::-moz-selection { background: #5af; color: #fff; text-shadow: none; }
+::selection { background: #5af; color: #fff; text-shadow: none; }
 
 /* ID's */
 #container
