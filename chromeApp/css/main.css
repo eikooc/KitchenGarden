@@ -71,3 +71,9 @@ h2 {
 	width: 600px;
 	background:#fff;
 }
+
+#datetime {
+	margin: 15px;
+	text-align: right;
+	font-size: 0.8em;
+}

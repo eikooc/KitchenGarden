@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html ng-app="kitchenGarden">
 
   <head>
     <meta charset="UTF-8">
@@ -9,6 +9,12 @@
 
   <body>
     <div class="header">
+	<div ng-controller="MainController">
+        <div id="datetime">
+		  {{ date.raw | date:'EEEE, MMM dd,' }}
+          {{ date.raw | date:'hh:mm:ss' }}
+        </div>
+      </div>
       <div id="bluetoothStatus"></div>
       <div id="logo" class="image"></div>
       <h1 class="inset-text" id="head_name">Plant name</h1>
@@ -16,10 +22,14 @@
     </div>
 	
 	<div class="stats">
-	
+	  
 	</div>
 	
   <p>Dummy text!</p>
   </body>
+  
+  <script src="lib/angular-1.1.0.min.js"></script>
+  <script src="lib/angular-route.min.js"></script>
+  <script src="js/app.js"></script>
 
 </html>
