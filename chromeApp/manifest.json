@@ -1,7 +1,7 @@
 {
   "name": "kitchenGarden",
   "description": "Gardening tool",
-  "version": "0.0.0",
+  "version": "0.1",
   "manifest_version": 2,
   "minimum_chrome_version": "30",
   "icons": {
@@ -10,6 +10,7 @@
   },
   "app": {
     "background": {
+	  "persistent": true,
       "scripts": ["js/background.js"]
     }
   },
