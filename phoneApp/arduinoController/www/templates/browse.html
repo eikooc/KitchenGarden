@@ -1,8 +1,58 @@
-<ion-view title="Browse">
+<ion-view title="Customize the UI and stuff">
   <ion-nav-buttons side="left">
     <button menu-toggle="left"class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
   <ion-content class="has-header">
-    <h1>Browse</h1>
+    <h1>FONTS, COLORS and MORE</h1>
+	
+
+<div class="list">
+<div class="range range-calm">
+  <i class="icon ion-waterdrop"></i>
+  <input type="range" name="moisture">
+</div>
+
+<div class="item range range-energized">
+    <i class="icon ion-ios7-lightbulb"></i>
+    <input type="range" name="volume" min="0" max="100" value="33">
+</div>
+  
+<div class="item range range-assertive">
+    <i class="icon ion-thermometer"></i>
+    <input type="range" name="volume" min="0" max="35" value="20">
+</div>
+
+<div class="item item-toggle">
+     Arduino controls Water
+     <label class="toggle toggle-calm">
+       <input type="checkbox" checked>
+       <div class="track">
+         <div class="handle"></div>
+       </div>
+     </label>
+</div>
+  
+  <div class="item item-toggle">
+     Arduino controls Light
+     <label class="toggle toggle-energized">
+       <input type="checkbox" checked>
+       <div class="track">
+         <div class="handle"></div>
+       </div>
+     </label>
+</div>
+  
+  <div class="item item-toggle">
+     Arduino controls Temperature
+     <label class="toggle toggle-assertive">
+       <input type="checkbox" checked>
+       <div class="track">
+         <div class="handle"></div>
+       </div>
+     </label>
+</div>
+</div>
+
+
   </ion-content>
 </ion-view>

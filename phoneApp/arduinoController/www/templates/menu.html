@@ -1,26 +1,24 @@
 <ion-side-menus>
-
   <ion-pane ion-side-menu-content>
-    <ion-nav-bar class="bar-stable nav-title-slide-ios7">
-      <ion-nav-back-button class="button-clear"><i class="icon ion-ios7-arrow-back"></i> Back</ion-nav-back-button>
+    <ion-nav-bar class="bar-balanced nav-title-slide-ios7">
+      <ion-nav-back-button class="button-clear"><i class="icon ion-arrow-left-c"></i> Back</ion-nav-back-button>
     </ion-nav-bar>
     <ion-nav-view name="menuContent" animation="slide-left-right"></ion-nav-view>
   </ion-pane>
-
   <ion-side-menu side="left">
-    <header class="bar bar-header bar-stable">
-      <h1 class="title">Left</h1>
+    <header class="bar bar-header bar-dark">
+      <h1 class="title">Menu</h1>
     </header>
-    <ion-content class="has-header">
+    <ion-content class="has-header sides" scroll="false">
       <ion-list>
         <ion-item nav-clear menu-close href="#/app/search">
-          Search
+          <p class="icon ion-pie-graph"> My plants</p>
+        </ion-item>
+        <ion-item nav-clear menu-close href="#/app/plants">
+          <p class="icon ion-android-add"> Browse</p>
         </ion-item>
         <ion-item nav-clear menu-close href="#/app/browse">
-          Browse
-        </ion-item>
-        <ion-item nav-clear menu-close href="#/app/playlists">
-          Playlists
+          <p class="icon ion-android-mixer"> Settings</p>
         </ion-item>
       </ion-list>
     </ion-content>

@@ -1,12 +1,6 @@
-// Ionic Starter App
+var app = angular.module('app', ['ionic', 'app.controllers'])
 
-// angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
-// the 2nd parameter is an array of 'requires'
-// 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers'])
-
-.run(function($ionicPlatform) {
+app.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -20,7 +14,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
+app.config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
     .state('app', {
@@ -34,7 +28,8 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       url: "/search",
       views: {
         'menuContent' :{
-          templateUrl: "templates/search.html"
+          templateUrl: "templates/search.html",
+		  controller: 'PlantListCtrl'
         }
       }
     })
@@ -47,26 +42,39 @@ angular.module('starter', ['ionic', 'starter.controllers'])
         }
       }
     })
-    .state('app.playlists', {
-      url: "/playlists",
+    .state('app.plants', {
+      url: "/plants",
       views: {
         'menuContent' :{
-          templateUrl: "templates/playlists.html",
-          controller: 'PlaylistsCtrl'
+          templateUrl: "templates/plants.html",
+          controller: 'PlantListCtrl'
         }
       }
     })
 
     .state('app.single', {
-      url: "/playlists/:playlistId",
+      url: "/plants/:plantListId",
       views: {
         'menuContent' :{
-          templateUrl: "templates/playlist.html",
-          controller: 'PlaylistCtrl'
+          templateUrl: "templates/plantList.html",
+          controller: 'PlantListCtrl'
         }
       }
     });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/playlists');
+  $urlRouterProvider.otherwise('/app/plants');
 });
 
+app.directive('backImg', function(){
+    return function(scope, element, attrs){
+        var url = attrs.backImg;
+        element.css({
+            'background-image': 'url(' + url +')',
+            'background-size' : 'cover'
+        });
+    };
+});
+
+
+/* JS */
+var herbArray = ['Angelica', 'Basil', 'Laurel', 'Chives', 'Dill', 'Catnip', 'Fennel', 'Lemongrass', 'Spearmint', 'Parsley', 'Vietnamese Coriander', 'Oregano', 'Thyme', 'Rosemary', 'Herb Sage', 'Tarragon'];
