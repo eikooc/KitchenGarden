@@ -1,0 +1,18 @@
+<ion-view title="Browse all the plants">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+  <div class="bar bar-subheader item item-input-wrapper">
+      <span class="icon ion-search placeholder-icon"></span>
+      <input type="search" ng-model="searchText" placeholder="search..."/>
+  </div>
+  <ion-content class="has-header has-subheader">
+    <ion-list>
+      <ion-item ng-repeat="plant in plants | filter:searchText" href="#/app/plants/{{plant.id}}" class="item item-thumbnail-left">
+        <img id="logo" ng-src="http://{{plant.title}}.jpg.to">
+		<h2>{{ plant.title }}</h2>
+		<h4>{{ plant.description }}</h4>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
