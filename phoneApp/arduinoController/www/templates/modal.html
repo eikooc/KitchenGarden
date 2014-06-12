@@ -1,0 +1,34 @@
+<ion-view title="My plants - and their health">
+  <div class="modal" ng-controller="ModalCtrl">
+    <!-- Modal header bar -->
+    <ion-header-bar class="bar bar-secondary bar-positive">
+      <h1 class="title">New Plant</h1>
+      <button class="button button-clear button-clear" ng-click="close()">Cancel</button>
+    </ion-header-bar>
+	
+    <!-- Modal content area -->
+    <ion-content>
+      <form class="list" ng-submit="submit(title, id, description)">
+        <div class="item item-divider">
+          Plant info
+        </div>
+        <label class="item item-input">
+          <input type="text" placeholder="Title" ng-model="title" required>
+		  {{ title }}
+        </label>
+	    <label class="item item-input">
+          <input type="text" placeholder="id" ng-model="id" required>
+        </label>
+        <label class="item item-input">
+          <input type="text" placeholder="Description" ng-model="description" required>
+        </label>
+        <div class="padding">
+          <button type="submit" class="button button-block" >Add to plant list</button>
+        </div>
+      </form>
+
+    </ion-content>
+        
+	  
+  </div>
+</ion-view>
