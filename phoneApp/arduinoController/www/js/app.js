@@ -59,7 +59,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
       url: "/plants/:plantListId",
       views: {
         'menuContent' :{
-          templateUrl: "templates/plantList.html",
+          templateUrl: "templates/plantOverview.html",
           controller: 'PlantListCtrl'
         }
       }
