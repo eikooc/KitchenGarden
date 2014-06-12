@@ -2,14 +2,6 @@ body {
   cursor: url('http://ionicframework.com/img/finger.png'), auto;
 }
 
-#logo {
-    display: block;
-    float: left;
-	width: 100px;
-    height: 100px;
-    border-radius: 100%;
-}
-
 .sides {
   background-color:#cccccc;
   background-size: auto;
@@ -33,7 +25,7 @@ body {
 
 .big-icon {
   font-size: 64px;
-  color : red;
+  color: red;
 }
 
 /* go crazy */
@@ -103,10 +95,11 @@ a {
 ::-moz-selection { background: #5af; color: #fff; text-shadow: none; }
 ::selection { background: #5af; color: #fff; text-shadow: none; }
 
-li {
+
+ul li {
+    display: inline;
     list-style:none;
-    float:left;
-    margin:10px;
+    margin:1px;
 }
 
 
@@ -115,3 +108,32 @@ div[back-img]{
     height: 100px;
     color: #ccc;
 }
+
+#logo {
+    display: block;
+    float: left;
+	width: 100px;
+    height: 100px;
+    border-radius: 100%;
+}
+
+#stats {
+  width:100%;
+}
+
+#stats div{
+  width:calc(100% / 3);
+  display:inline-block;
+  margin-right: -4px;
+}
+
+#snapper{
+    width:100%;
+}
+
+#snapper div{
+    height:200px;
+    width:calc(100% / 3);
+    display:inline-block;
+}
+

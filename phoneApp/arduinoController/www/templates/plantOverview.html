@@ -11,12 +11,14 @@
           <h3>{{plant.description}}</h3>
         </div>
 		<div id="stats">
-		<icon class="icon ion-thermometer big-icon"></icon><h1>{{temperature}}</h1>
+		<icon class="icon ion-thermometer big-icon"></icon><h1>10 {{temperature}}</h1>
+		<icon class="icon ion-ios7-sunny big-icon"></icon><h1>16 {{light}}</h1>
+		<icon class="icon ion-waterdrop big-icon"></icon><h1>19 {{moisture}}</h1>
 		</div>	
 	    <li>Needs:
-	      10 water
-	      20 temperature
-	      19 light
+	       water
+	       temperature
+	       light
 		  <input type="text" value="75" class="dial">
 	    </li>
 		
@@ -24,7 +26,3 @@
       </ion-content>
     </ion-view>
 </div>
-
-<!-- 
-<div ng-init="plant=plants[$location.path().slice(-1)]">
--->
