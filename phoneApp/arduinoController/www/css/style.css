@@ -75,6 +75,13 @@ a {
 .head h2 {
     margin: 0px 0 0px;
     font-weight: 100;
+    font-size: 1.0em;
+    color: #bcb9b9;
+}
+
+.head h3 {
+    margin: 0px 0 0px;
+    font-weight: 100;
     font-size: 0.8em;
     color: #bcb9b9;
 }
