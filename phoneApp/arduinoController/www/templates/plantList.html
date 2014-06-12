@@ -5,10 +5,9 @@
     <ion-view title={{plant.title}}>
       <ion-content class="has-header">
         <div class="head">
-          <div id ="logo" back-img="img/plants/{{plant.title}}.jpg" ></div>
-          <h1 class="inset-text" id="head_name">{{plant.title}}</h1>
-		   <h2 class="inset-text" id="sName">Scientific name: {{plant.title}}</h2>
-          <h3>{{plant.description}}</h3>
+          <div id ="logo" back-img="http://{{plant.title}}.jpg.to" ></div>
+          <h1 class="inset-text" id="head_name">{{ plant.title }}</h1>
+          <h2>{{ plant.description }}</h2>
         </div>
 		<div id="stats">
 		<icon class="icon ion-thermometer big-icon"></icon><h1>{{temperature}}</h1>
@@ -25,6 +24,3 @@
     </ion-view>
 </div>
 
-<!-- 
-<div ng-init="plant=plants[$location.path().slice(-1)]">
--->
