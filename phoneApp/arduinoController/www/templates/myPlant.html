@@ -1,0 +1,35 @@
+<ion-view title="My plants - and their health">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+	
+	
+	<div ng-init="plant=plants[$location.path().slice(-1)]">
+  <ion-nav-buttons side="right">
+    <icon class="icon ion-bluetooth bluetooth-off"></icon>
+  </ion-nav-buttons>
+    <ion-view title={{plant.title}}>
+      <ion-content class="has-header">
+        <div class="head">
+          <div id ="logo" back-img="http://{{plant.title}}.jpg.to" ></div>
+          <h1 class="inset-text" id="head_name">{{ plant.title }}</h1>
+          <h2>{{ plant.description }}</h2>
+        </div>
+		<div id="stats">
+		<icon class="icon ion-thermometer big-icon"></icon><h1>{{temperature}}</h1>
+		</div>	
+	    <li>Needs:
+	      10 water
+	      20 temperature
+	      19 light
+		  <input type="text" value="75" class="dial">
+	    </li>
+		
+        <button class="button button-full button-positive">Grow this plant</button>
+      </ion-content>
+    </ion-view>
+</div>
+
+
+	
+  </ion-content>
+</ion-view>

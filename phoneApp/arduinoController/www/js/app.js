@@ -1,4 +1,7 @@
-var app = angular.module('app', ['ionic', 'app.controllers'])
+var app = angular.module('app', [
+  'ionic', 
+  'app.controllers'
+  ])
 
 app.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -24,21 +27,21 @@ app.config(function($stateProvider, $urlRouterProvider) {
       controller: 'AppCtrl'
     })
 
-    .state('app.search', {
-      url: "/search",
+    .state('app.myPlant', {
+      url: "/myPlant",
       views: {
         'menuContent' :{
-          templateUrl: "templates/search.html",
+          templateUrl: "templates/myPlant.html",
 		  controller: 'PlantListCtrl'
         }
       }
     })
 
-    .state('app.browse', {
-      url: "/browse",
+    .state('app.settings', {
+      url: "/settings",
       views: {
         'menuContent' :{
-          templateUrl: "templates/browse.html"
+          templateUrl: "templates/settings.html"
         }
       }
     })
@@ -76,5 +79,30 @@ app.directive('backImg', function(){
 });
 
 
+app.service('myService', function($rootScope) {
+  var x = [
+    { title: 'Basil', id: 0, description: 'Basil is a good herb' },
+    { title: 'Spearmint', id: 1, description: 'Spearmint is a great herb' },
+    { title: 'Tarragon', id: 2, description: 'Tarragon is a super herb' },
+    { title: 'Dill', id: 3, description: 'Dill is a fine herb' },
+    { title: 'Parsley', id: 4, description: 'Parsley is a juicy herb' },
+    { title: 'Oregano', id: 5, description: 'Oregano is a delicious herb' },
+	{ title: 'Catnip', id: 6, description: 'Catnip is a spicy herb' },
+	{ title: 'Thyme', id: 7, description: 'Thyme is a wonderful herb'}
+  ];
+  return {
+    getPlants: function () {
+      return x;
+    },
+    addPlant : function(y) {
+	  x.push(y);
+	  $rootScope.$broadcast('XChanged', x);
+	}
+  };
+})
+  
+
+
 /* JS */
 var herbArray = ['Angelica', 'Basil', 'Laurel', 'Chives', 'Dill', 'Catnip', 'Fennel', 'Lemongrass', 'Spearmint', 'Parsley', 'Vietnamese Coriander', 'Oregano', 'Thyme', 'Rosemary', 'Herb Sage', 'Tarragon'];
+
