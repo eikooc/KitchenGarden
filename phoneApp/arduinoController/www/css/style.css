@@ -1,10 +1,13 @@
-/* Empty. Add your own CSS if you like */
+body {
+  cursor: url('http://ionicframework.com/img/finger.png'), auto;
+}
 
 .sides {
   background-color:#cccccc;
   background-size: auto;
 }
 
+/* custom icons */
 .bluetooth-off {
   font-size: 32px;
   color : red;
@@ -18,6 +21,11 @@
 .bluetooth-on {
   font-size: 32px;
   color : green;
+}
+
+.big-icon {
+  font-size: 64px;
+  color : red;
 }
 
 /* go crazy */
@@ -84,77 +92,6 @@ li {
     list-style:none;
     float:left;
     margin:10px;
-}
-.button-small {
-    color: #fff !important;
-    word-spacing: 0.25em;
-    font-family:'Open Sans', sans-serif;
-    text-transform: uppercase;
-    border: none;
-    line-height: 22px;
-    padding: 12px 13px 11px;
-    text-align: center;
-    display: inline-block;
-    margin-top: 5px;
-    margin-bottom: 18px;
-    text-decoration: none;
-}
-.button-small:visited {
-    color: #fff;
-}
-.button-small {
-    padding: 6px 12px 5px;
-    font-size: 11px;
-    color: #fff;
-    text-shadow: none;
-}
-.button-small:hover {
-    color: rgba(255, 255, 255, 0.75);
-    text-decoration: none;
-    -webkit-box-shadow:inset 0 10px 20px rgba(255, 255, 255, 0.10);
-    -moz-box-shadow: inset 0 10px 20px rgba(255, 255, 255, 0.10);
-    box-shadow: inset 0 10px 20px rgba(255, 255, 255, 0.10);
-}
-.button-small:active {
-    -webkit-box-shadow: inset 0 2px 2px rgba(0, 0, 0, 0.3), inset 0 10px 20px rgba(0, 0, 0, 0.08);
-    -moz-box-shadow: inset 0 2px 2px rgba(0, 0, 0, 0.3), inset 0 10px 20px rgba(0, 0, 0, 0.08);
-    box-shadow: inset 0 2px 2px rgba(0, 0, 0, 0.3), inset 0 10px 20px rgba(0, 0, 0, 0.08);
-}
-.green_dark {
-    background: #4B701D;
-}
-/* the FOOT stuffs */
- .foot {
-    display: inline;
-    margin: 0;
-    padding: 0;
-    border: 0;
-    width: 100%;
-    display: flex;
-    /* NEW, Spec - Opera 12.1, Firefox 20+ */
-}
-[class^="footItem"] {
-    display: inline-block;
-    width: 33.333333%;
-    padding: 15px 0 15px 0px;
-    text-align: center;
-    color: rgba(255, 255, 255, .8);
-    font-size: 1.1em;
-}
-[class^="footItem"] span {
-    display: inline-block;
-    font-size: 1.6em;
-    margin-bottom: 0px;
-    color: #fff;
-}
-.footItem1 {
-    background: #57BE85;
-}
-.footItem2 {
-    background: #D87575;
-}
-.footItem3 {
-    background: #7BCED7;
 }
 
 

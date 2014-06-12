@@ -3,42 +3,63 @@ angular.module('app.controllers', [])
 .controller('AppCtrl', function($scope) {
 })
 
-.controller('PlantListCtrl', function($scope, $location) {
-  $scope.plants = [
-    { title: 'Basil', id: 0, description: 'Basil is a good herb' },
-    { title: 'Spearmint', id: 1, description: 'Spearmint is a great herb' },
-    { title: 'Tarragon', id: 2, description: 'Tarragon is a super herb' },
-    { title: 'Dill', id: 3, description: 'Dill is a fine herb' },
-    { title: 'Parsley', id: 4, description: 'Parsley is a juicy herb' },
-    { title: 'Oregano', id: 5, description: 'Oregano is a delicious herb' },
-	{ title: 'Catnip', id: 6, description: 'Catnip is a spicy herb' }
-  ];
-  
+.controller('PlantListCtrl', function($scope, $location, myService) {
   $scope.$location = $location;
   
-  $scope.plants.push({
-        title: 'Thyme',
-        id: 7,
-        description: 'Thyme is a wonderful herb'
-      });
+  $scope.plants = myService.getPlants();
+  
+  
+  $scope.$on('XChanged', function(event, x) {
+        plants = x;
+		$scope.plants = x;
+    }); 
+  
 
 })
 
-.controller('SearchCtrl', function($scope) {
+.controller('MyPlantCtrl', function($scope) {
   
 })
 
-.controller('CheckinCtrl', function($scope) {
-  $scope.showForm = true;
+.controller('MyController', function($scope, $ionicModal) {
+ 
+  $scope.openModal = function() {
+    $scope.modal.show();
+  };
+  $scope.closeModal = function() {
+    $scope.modal.hide();
+  };
+  $ionicModal.fromTemplateUrl('modal.html', function(modal) {
+    $scope.modal = modal;
+  }, {
+    animation: 'slide-in-up',
+    focusFirstInput: true
+  });
   
-  $scope.plant = {};
-  $scope.submit = function() {
-    if(!$scope.plant.title) {
-      alert('Info required');
+})
+
+.controller('ModalCtrl', function($scope, myService) {
+  
+  var y = [];
+  $scope.submit = function(a, b, c) {
+  if(!a || !b || !c) {
       return;
     }
-    $scope.showForm = false;
-    $scope.plants.push($scope.plant);
-  };
+	y = ({
+	  title: a, 
+	  id: b, 
+	  description: c
+	});
+	myService.addPlant(y);
+    $scope.modal.hide();
+  }
   
-})
+  $scope.close = function() {
+    $scope.modal.hide();
+  };
+         
+  $scope.$on('XChanged', function(event, x) {
+    $scope.plants = x;
+  });
+  
+});
