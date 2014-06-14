@@ -1,25 +1,9 @@
 Bluetooth based Arduino controller
 =====================
 
-
-## Using this project
-
-We recommend using the `ionic` utility to create new Ionic projects that are based on this project but use a ready-made starter template.
-
-For example, to start a new Ionic project with the default tabs interface, make sure the `ionic` utility is installed:
-
-```bash
-$ sudo npm install -g ionic
-```
-
-Then run:
-
-```bash
-$ sudo npm install -g ionic
-$ ionic start myProject tabs
-```
-
-More info on this can be found on the Ionic [Getting Started](http://ionicframework.com/getting-started) page.
+This is the controller for the Arduino.
+With this you can choose a template plant and modify it's settings.
+It is also possible to manually control the Arduino.
 
 ## Installing
 
