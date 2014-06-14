@@ -1,8 +1,6 @@
-Ionic App Base
+Bluetooth based Arduino controller
 =====================
 
-A starting project for Ionic that optionally supports
-using custom SCSS.
 
 ## Using this project
 
@@ -23,34 +21,70 @@ $ ionic start myProject tabs
 
 More info on this can be found on the Ionic [Getting Started](http://ionicframework.com/getting-started) page.
 
-## Installation
+## Installing
 
-While we recommend using the `ionic` utility to create new Ionic projects, you can use this repo as a barebones starting point to your next Ionic app.
+You just need to download the .apk file from eikooc.github.io
 
-To use this project as is, first clone the repo from GitHub, then run:
 
+## Building (optional)
+
+If you want to build the controller yourself you need to install the node package manager (npm)
+
+### Windows
+http://nodejs.org/download/
+
+### Ubuntu
+
+First install nodejs and npm via APT from the terminal.
+
+On older systems than Ubuntu 13.04
+Following Rahul Bansal's instructions https://rtcamp.com/tutorials/nodejs/node-js-npm-install-ubuntu/
+
+Add Chris Lea's repository
 ```bash
-$ cd ionic-app-base
+$ apt-get install python-software-properties
+$ apt-add-repository ppa:chris-lea/node.js
+$ apt-get update
+```
+Then install nodejs and npm
+```bash
+$ sudo apt-get install nodejs 
+```
+
+To check your versions of nodejs and npm write
+```bash
+$ node -v
+$ npm -v
+```
+It should output at least v0.10.28 for node and 1.4.14 for npm
+
+Afterwards install the ionic framework and it's dependencies
+```bash
+$ sudo npm install -g 
 $ sudo npm install -g cordova ionic gulp
 $ npm install
-$ gulp install
 ```
 
-## Using Sass (optional)
+To build the app for Android you need the Android SDK
+www.android.com
 
-This project makes it easy to use Sass (the SCSS syntax) in your projects. This enables you to override styles from Ionic, and benefit from
-Sass's great features.
-
-Just update the `./scss/ionic.app.scss` file, and run `gulp` or `gulp watch` to rebuild the CSS files for Ionic.
-
-Note: if you choose to use the Sass method, make sure to remove the included `ionic.css` file in `index.html`, and then uncomment
-the include to your `ionic.app.css` file which now contains all your Sass code and Ionic itself:
-
-```html
-<!-- IF using Sass (run gulp sass first), then remove the CSS include above
-<link href="css/ionic.app.css" rel="stylesheet">
--->
+change directory to the phoneApp, add the Android platform and run it.
+```bash
+$ cd /path/to/arduinoController
+$ sudo ionic platform android
+$ sudo ionic run android
 ```
+
+### Other Unix distributions
+https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager
+
+## Run
+To run the web app a http server use Python like so:
+```bash
+$ cd /path/to/arduinoController
+$ sudo python -m http.server
+```
+
 
 ## Updating Ionic
 
@@ -71,18 +105,4 @@ To this:
 After saving the update to bower.json file, run `gulp install`.
 
 Alternatively, install bower globally with `npm install -g bower` and run `bower install`.
-
-#### Using the Nightly Builds of Ionic
-
-If you feel daring and want use the bleeding edge 'Nightly' version of Ionic, change the version of Ionic in your bower.json to this:
-
-```
-"ionic": "driftyco/ionic-bower#master"
-```
-
-Warning: the nightly version is not stable.
-
-
-## Issues
-Issues have been disabled on this repo, if you do find an issue or have a question consider posting it on the [Ionic Forum](http://forum.ionicframework.com/).  Or else if there is truly an error, follow our guidelines for [submitting an issue](http://ionicframework.com/contribute/#issues) to the main Ionic repository. On the other hand, pull requests are welcome here!
 

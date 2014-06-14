@@ -3,26 +3,27 @@ angular.module('app.controllers', [])
 .controller('AppCtrl', function($scope) {
 })
 
-.controller('PlantListCtrl', function($scope, $location, myService) {
+.controller('PlantListCtrl', function($scope, $location, plantList) {
   $scope.$location = $location;
-  
-  $scope.plants = myService.getPlants();
-  
-  
+
+  $scope.plants = plantList.getPlants();
+
+
   $scope.$on('XChanged', function(event, x) {
         plants = x;
 		$scope.plants = x;
-    }); 
-  
+    });
+
 
 })
 
 .controller('MyPlantCtrl', function($scope) {
-  
+
 })
 
+//
 .controller('MyController', function($scope, $ionicModal) {
- 
+
   $scope.openModal = function() {
     $scope.modal.show();
   };
@@ -35,31 +36,32 @@ angular.module('app.controllers', [])
     animation: 'slide-in-up',
     focusFirstInput: true
   });
-  
+
 })
 
-.controller('ModalCtrl', function($scope, myService) {
-  
-  var y = [];
-  $scope.submit = function(a, b, c) {
-  if(!a || !b || !c) {
+// The modal that pops up to add new plants to the list.
+.controller('ModalCtrl', function($scope, plantList) {
+
+  var tmpArray = [];
+  $scope.submit = function(aTitle, aID, aDescription) {
+  if(!aTitle || !aID || !aDescription) {  // Require all fields to be filled out
       return;
     }
-	y = ({
-	  title: a, 
-	  id: b, 
-	  description: c
+	tmpArray = ({  // define temporary array
+	  title: aTitle,
+	  id: aID,
+	  description: aDescription
 	});
-	myService.addPlant(y);
+	plantList.addPlant(tmpArray);  // push to list
     $scope.modal.hide();
   }
-  
+
   $scope.close = function() {
     $scope.modal.hide();
   };
-         
+
   $scope.$on('XChanged', function(event, x) {
     $scope.plants = x;
   });
-  
+
 });
