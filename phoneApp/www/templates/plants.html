@@ -3,23 +3,24 @@
     <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
   <ion-nav-buttons side="right" ng-controller="MyController">
-	<div side="right" class="button button-icon ion-compose big-icon" title="'newPlant'" ng-click="openModal()"></div>
+	 <div side="right" class="button button-icon ion-compose big-icon" title="'newPlant'" ng-click="openModal()"></div>
   </ion-nav-buttons>
   <div class="bar bar-subheader item item-input-wrapper">
-      <span class="icon ion-search placeholder-icon"></span>
-      <input type="search" ng-model="searchText" placeholder="search..."/>
+    <span class="icon ion-search placeholder-icon"></span>
+    <input type="search" ng-model="searchText" placeholder="search..."/>
   </div>
   <ion-content class="has-header has-subheader">
     <ion-list>
       <ion-item ng-repeat="plant in plants | filter:searchText" href="#/app/plants/{{plant.id}}" class="item item-thumbnail-left">
         <img id="logo" ng-src="img/plants/{{plant.title}}.jpg">
-		<h2>{{ plant.title }}</h2>
-		<h4>{{ plant.description }}</h4>
+        <h2>{{ plant.title }}</h2>
+        <h4>{{ plant.description }}</h4>
       </ion-item>
     </ion-list>
   </ion-content>
 </ion-view>
 
+<!-- Modal for adding new plants to the list -->
 <script id="modal.html" type="text/ng-template">
   <div class="modal" ng-controller="ModalCtrl">
     <!-- Modal header bar -->
@@ -27,30 +28,27 @@
       <h1 class="title">New Plant</h1>
       <button class="button button-clear button-clear" ng-click="close()">Cancel</button>
     </ion-header-bar>
-	
+
     <!-- Modal content area -->
     <ion-content>
       <form class="list" ng-submit="submit(title, id, description)">
-        <div class="item item-divider">
-          Plant info
-        </div>
+        <div class="item item-divider">Plant info</div>
         <label class="item item-input">
           <input type="text" placeholder="Title" ng-model="title" required>
-		  {{ title }}
         </label>
-	    <label class="item item-input">
+	      <label class="item item-input">
           <input type="text" placeholder="id" ng-model="id" required>
         </label>
         <label class="item item-input">
           <input type="text" placeholder="Description" ng-model="description" required>
         </label>
         <div class="padding">
-          <button type="submit" class="button button-block" >Add to plant list</button>
+          <button type="submit" class="button button-block">Add to plant list</button>
         </div>
       </form>
 
     </ion-content>
-        
-	  
+
+
   </div>
 </script>

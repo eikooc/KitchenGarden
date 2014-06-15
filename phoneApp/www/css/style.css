@@ -25,7 +25,18 @@ body {
 
 .big-icon {
   font-size: 64px;
-  color: red;
+}
+.big-icon-red {
+  font-size: 64px;
+  color : red;
+}
+.big-icon-yellow {
+  font-size: 64px;
+  color : yellow;
+}
+.big-icon-blue {
+  font-size: 64px;
+  color : blue;
 }
 
 /* go crazy */
@@ -136,4 +147,3 @@ div[back-img]{
     width:calc(100% / 3);
     display:inline-block;
 }
-

@@ -21,8 +21,9 @@
       <li>Needs: water temperature light
         <input type="text" value="75" class="dial">
       </li>
-
-      <button class="button button-full button-positive">Grow this plant</button>
+      <div ng-controller="MyPlantCtrl">
+        <button class="button button-full button-positive" ng-click="setPlant(plants[$location.path().slice(-1)])">Grow this plant</button>
+      </div>
     </ion-content>
   </ion-view>
 </div>

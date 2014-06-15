@@ -1,7 +1,9 @@
 // Define the container for the controllers, services, filters, etc.
 var app = angular.module('app', [
   'ionic',
-  'app.controllers'
+  'app.controllers',
+  'app.services',
+  'app.directives'
 ])
 
 // Define the run method
@@ -35,7 +37,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
     views: {
       'menuContent': {
         templateUrl: "templates/myPlant.html",
-        controller: 'PlantListCtrl'
+        controller: 'MyPlantCtrl'
       }
     }
   })
@@ -70,64 +72,3 @@ app.config(function($stateProvider, $urlRouterProvider) {
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/myPlant');
 });
-
-app.directive('backImg', function() {
-  return function(scope, element, attrs) {
-    var url = attrs.backImg;
-    element.css({
-      'background-image': 'url(' + url + ')',
-      'background-size': 'cover'
-    });
-  };
-});
-
-// Service that enables the list of plants to be called from anywhere
-app.service('plantList', function($rootScope) {
-  var x = [{
-    title: 'Basil',
-    id: 0,
-    description: 'Basil is a good herb'
-  }, {
-    title: 'Spearmint',
-    id: 1,
-    description: 'Spearmint is a great herb'
-  }, {
-    title: 'Tarragon',
-    id: 2,
-    description: 'Tarragon is a super herb'
-  }, {
-    title: 'Dill',
-    id: 3,
-    description: 'Dill is a fine herb'
-  }, {
-    title: 'Parsley',
-    id: 4,
-    description: 'Parsley is a juicy herb'
-  }, {
-    title: 'Oregano',
-    id: 5,
-    description: 'Oregano is a delicious herb'
-  }, {
-    title: 'Catnip',
-    id: 6,
-    description: 'Catnip is a spicy herb'
-  }, {
-    title: 'Thyme',
-    id: 7,
-    description: 'Thyme is a wonderful herb'
-  }];
-  return {
-    getPlants: function() {
-      return x;
-    },
-    addPlant: function(y) {
-      x.push(y);
-      $rootScope.$broadcast('XChanged', x);
-    }
-  };
-})
-
-
-
-/* JS */
-var herbArray = ['Angelica', 'Basil', 'Laurel', 'Chives', 'Dill', 'Catnip', 'Fennel', 'Lemongrass', 'Spearmint', 'Parsley', 'Vietnamese Coriander', 'Oregano', 'Thyme', 'Rosemary', 'Herb Sage', 'Tarragon'];
