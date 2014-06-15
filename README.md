@@ -10,7 +10,7 @@ It can be controlled via bluetooth.
 
 ## Controller application
 The controller is a web application. It uses the Cordova to be compiled as an Android app.
-Further instructions are here: [Controller README](https://github.com/eikooc/KitchenGarden/blob/master/phoneApp/arduinoController/README.md)
+Further instructions are here: [Controller README](https://github.com/eikooc/KitchenGarden/blob/master/phoneApp/README.md)
 
 ## Arduino software
 The software for the Arduino is built so it easily can communicate with whatever connects to it.
