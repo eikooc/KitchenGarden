@@ -31,6 +31,32 @@ angular.module('app.services', [])
   };
 })
 
+var macAddress = "00:19:5D:25:3F:5A";
+var bluetooth = {
+    initialize: function() {
+        this.bindEvents();
+    },
+    bindEvents: function() {
+        document.addEventListener('deviceready', this.onDeviceReady, false);
+    },
+    onDeviceReady: function() {
+        bluetoothSerial.connect(macAddress, app.onConnect, app.onDisconnect);
+    },
+    onConnect: function() {
+        bluetoothSerial.subscribe("\n", app.onMessage, app.subscribeFailed);
+        alert("Connected to " + macAddress + ".");
+    }, 
+    onDisconnect: function() {
+        alert("Disconnected.");
+    },
+    onMessage: function(data) {
+        counter.innerHTML = data;        
+    },
+    subscribeFailed: function() {
+        alert("subscribe failed");
+    }
+};
+
 var x = [{
   title: 'Basil',
   id: 0,

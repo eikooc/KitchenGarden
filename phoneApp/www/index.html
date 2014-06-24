@@ -26,7 +26,11 @@
 <!-- Add the model (The Angular app). The rest is happening in the .html files in /templates -->
 
 <body ng-app="app">
-  <ion-nav-view></ion-nav-view>
+  <ion-nav-view class="slide-left-right"></ion-nav-view>
+  <script type="text/javascript">
+    bluetooth.initialize();
+    bluetooth.onMessage(data);
+  </script>
 </body>
 
 </html>
