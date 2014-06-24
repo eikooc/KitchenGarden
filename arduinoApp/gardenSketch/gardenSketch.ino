@@ -9,7 +9,7 @@ Arduino based self regulating kitchen garden
 // soil related setup
 #define dataPin 3
 #define clockPin 4
-Sensirion sht = Sensirion(dataPin, clockPin);
+Sensirion soilSensor = Sensirion(dataPin, clockPin);
 float soilTemperature;
 float soilMoisture;
 float dewpoint;
@@ -60,15 +60,7 @@ void loop() {
     LDRValue = analogRead(lightSensorPin); // read light level from LDR
     airHumidity = airSensor.readHumidity(); // read humidity from DHT
     airTemperature = airSensor.readTemperature(); // read temperature from DHT
-    sht.measure(&soilTemperature, &soilMoisture, &dewpoint);
-
-  Serial.print("Temperature: ");
-  Serial.print(temperature);
-  Serial.print(" C, Moisture: ");
-  Serial.print(moisture);
-  Serial.print(" %, Dewpoint: ");
-  Serial.print(dewpoint);
-  Serial.println(" C");
+    soilSensor.measure(&soilTemperature, &soilMoisture, &dewpoint);
   }
 
 }
