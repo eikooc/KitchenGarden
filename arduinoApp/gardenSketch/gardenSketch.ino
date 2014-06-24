@@ -2,6 +2,7 @@
 Arduino based self regulating kitchen garden
  
  */
+ 
 
 #include <DHT.h>
 
@@ -9,8 +10,8 @@ Arduino based self regulating kitchen garden
 #define DHTPIN 2        // Humidity and temperature sensor pin
 #define DHTTYPE DHT22   // Model DHT 22 (AM2302)
 DHT airSensor(DHTPIN, DHTTYPE); // setup DHT sensor
-float airHumidity = dht.readHumidity(); // read humidity from DHT
-float airTemperature = dht.readTemperature(); // read temperature from DHT
+float airHumidity;
+float airTemperature;
 
 // light related setup
 int lightSensorPin = 3; // Set to whereever light sensor is connected
