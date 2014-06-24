@@ -56,8 +56,13 @@ void loop() {
     LDRValue = analogRead(lightSensorPin); // read light level from LDR
     airHumidity = airSensor.readHumidity(); // read humidity from DHT
     airTemperature = airSensor.readTemperature(); // read temperature from DHT
-    soilHumidity = sht1x.readHumidity(); // read temperature from SHT10
-    soilTemperature = sht1x.readTemperatureC(); // read humidity from SHT10
+    soilMoisture = soilSensor.readHumidity(); // read temperature from SHT10
+    soilTemperature = soilSensor.readTemperatureC(); // read humidity from SHT10
+    Serial.println(LDRValue);
+    Serial.println(airHumidity);
+    Serial.println(airTemperature);
+    Serial.println(soilMoisture);
+    Serial.println(soilTemperature);
   }
 
 }
