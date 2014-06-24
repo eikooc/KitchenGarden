@@ -17,11 +17,13 @@ float soilMoisture;
 #define DHTPIN 2        // Humidity and temperature sensor pin
 #define DHTTYPE DHT22   // Model DHT 22 (AM2302)
 DHT airSensor(DHTPIN, DHTTYPE); // setup DHT sensor
-float airHumidity;
-float airTemperature;
+float airHumidity = 0;
+float airTemperature = 0;
 
 // light related setup
 #define lightSensorPin A0 // Set to whereever light sensor is connected
+int light_threshold = 500; // Threshold for when to report that light is not enough
+int LDRValue = 0;
 
 // activity led setup
 int ledPin = 13; // this is just for checking activity
@@ -32,8 +34,8 @@ void setup() {
   pinMode(ledPin, OUTPUT);
 
   // Initialize input pins.
-  pinMode(lightSensorPin, INPUT); // Is this needed? It is analog pin..
-  
+  pinMode(lightSensorPin, INPUT);
+
   airSensor.begin(); // begin DHT so it is ready for reading
 
 }
@@ -41,13 +43,13 @@ void setup() {
 // Main loop
 void loop() { 
   // Read sensor values
-  analogRead(lightSensorPin); // read light level from LDR
-  airSensor.readHumidity(); // read humidity from DHT
-  airSensor.readTemperature(); // read temperature from DHT
-  sht1x.readTemperatureC(); // read humidity from SHT10
-  sht1x.readHumidity(); // read temperature from SHT10
-
+  LDRValue = analogRead(lightSensorPin); // read light level from LDR
+  airHumidity = airSensor.readHumidity(); // read humidity from DHT
+  airTemperature = airSensor.readTemperature(); // read temperature from DHT
+  soilHumidity = sht1x.readHumidity(); // read temperature from SHT10
+  soilTemperature = sht1x.readTemperatureC(); // read humidity from SHT10
 
 }
+
 
 
