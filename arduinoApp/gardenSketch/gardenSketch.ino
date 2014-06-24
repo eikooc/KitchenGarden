@@ -2,11 +2,18 @@
 Arduino based self regulating kitchen garden
  
  */
- 
 
+#include <SHT1x.h>
 #include <DHT.h>
 
-// temperature related setup
+// soil related setup
+#define soilDataPin  3
+#define soilClockPin 4
+SHT1x soilSensor(soilDataPin, soilClockPin);
+float soilTemperature;
+float soilMoisture;
+
+// air temperature related setup
 #define DHTPIN 2        // Humidity and temperature sensor pin
 #define DHTTYPE DHT22   // Model DHT 22 (AM2302)
 DHT airSensor(DHTPIN, DHTTYPE); // setup DHT sensor
@@ -14,8 +21,7 @@ float airHumidity;
 float airTemperature;
 
 // light related setup
-int lightSensorPin = 3; // Set to whereever light sensor is connected
-int lampRelay = 4; // Set to whereever relay for lamp is connected
+#define lightSensorPin A0 // Set to whereever light sensor is connected
 
 // activity led setup
 int ledPin = 13; // this is just for checking activity
@@ -26,8 +32,8 @@ void setup() {
   pinMode(ledPin, OUTPUT);
 
   // Initialize input pins.
-  pinMode(lightSensorPin, INPUT);
-
+  pinMode(lightSensorPin, INPUT); // Is this needed? It is analog pin..
+  
   airSensor.begin(); // begin DHT so it is ready for reading
 
 }
@@ -35,10 +41,13 @@ void setup() {
 // Main loop
 void loop() { 
   // Read sensor values
-  analogRead(lightSensorPin);
+  analogRead(lightSensorPin); // read light level from LDR
   airSensor.readHumidity(); // read humidity from DHT
   airSensor.readTemperature(); // read temperature from DHT
+  sht1x.readTemperatureC(); // read humidity from SHT10
+  sht1x.readHumidity(); // read temperature from SHT10
 
 
 }
+
 
