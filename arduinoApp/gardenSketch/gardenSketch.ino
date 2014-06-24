@@ -28,6 +28,10 @@ int LDRValue = 0;
 // activity led setup
 int ledPin = 13; // this is just for checking activity
 
+// setup sensor reading interval
+unsigned long prevMillis = 0;
+unsigned long interval = 1000;
+
 // Initialize settings
 void setup() {
   // Initialize output pins.
@@ -42,12 +46,19 @@ void setup() {
 
 // Main loop
 void loop() { 
-  // Read sensor values
-  LDRValue = analogRead(lightSensorPin); // read light level from LDR
-  airHumidity = airSensor.readHumidity(); // read humidity from DHT
-  airTemperature = airSensor.readTemperature(); // read temperature from DHT
-  soilHumidity = sht1x.readHumidity(); // read temperature from SHT10
-  soilTemperature = sht1x.readTemperatureC(); // read humidity from SHT10
+  unsigned long curMillis = millis();
+
+  // only read values every 1000 milliseconds
+  if(curMillis - prevMillis > interval) {
+    prevMillis = curMillis;
+    
+    // Read sensor values
+    LDRValue = analogRead(lightSensorPin); // read light level from LDR
+    airHumidity = airSensor.readHumidity(); // read humidity from DHT
+    airTemperature = airSensor.readTemperature(); // read temperature from DHT
+    soilHumidity = sht1x.readHumidity(); // read temperature from SHT10
+    soilTemperature = sht1x.readTemperatureC(); // read humidity from SHT10
+  }
 
 }
 
