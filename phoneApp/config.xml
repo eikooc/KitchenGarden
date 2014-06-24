@@ -7,6 +7,7 @@
   <author email="JamieNeubert@gmail.com" href="eikooc.github.io">
     Jamie Neubert Pedersen
   </author>
+  <icon src="icon.png" />
   <content src="index.html" />
   <access origin="*" />
   <preference name="fullscreen" value="true" />
