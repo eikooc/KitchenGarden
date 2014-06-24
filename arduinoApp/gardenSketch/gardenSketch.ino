@@ -2,16 +2,17 @@
 Arduino based self regulating kitchen garden
  
  */
-
-#include <SHT1x.h>
 #include <DHT.h>
 
+#include <Sensirion.h>
+
 // soil related setup
-#define soilDataPin  3
-#define soilClockPin 4
-SHT1x soilSensor(soilDataPin, soilClockPin);
+#define dataPin 3
+#define clockPin 4
+Sensirion sht = Sensirion(dataPin, clockPin);
 float soilTemperature;
 float soilMoisture;
+float dewpoint;
 
 // air temperature related setup
 #define DHTPIN 2        // Humidity and temperature sensor pin
@@ -29,11 +30,14 @@ int LDRValue = 0;
 int ledPin = 13; // this is just for checking activity
 
 // setup sensor reading interval
-unsigned long prevMillis = 0;
-unsigned long interval = 1000;
+unsigned long prevMillis = 0; // initialize previous milliseconds variable
+unsigned long interval = 5000; // number of milliseconds to wait
 
 // Initialize settings
 void setup() {
+  // start serial
+  Serial.begin(9600);
+  
   // Initialize output pins.
   pinMode(ledPin, OUTPUT);
 
@@ -56,13 +60,15 @@ void loop() {
     LDRValue = analogRead(lightSensorPin); // read light level from LDR
     airHumidity = airSensor.readHumidity(); // read humidity from DHT
     airTemperature = airSensor.readTemperature(); // read temperature from DHT
-    soilMoisture = soilSensor.readHumidity(); // read temperature from SHT10
-    soilTemperature = soilSensor.readTemperatureC(); // read humidity from SHT10
-    Serial.println(LDRValue);
-    Serial.println(airHumidity);
-    Serial.println(airTemperature);
-    Serial.println(soilMoisture);
-    Serial.println(soilTemperature);
+    sht.measure(&soilTemperature, &soilMoisture, &dewpoint);
+
+  Serial.print("Temperature: ");
+  Serial.print(temperature);
+  Serial.print(" C, Moisture: ");
+  Serial.print(moisture);
+  Serial.print(" %, Dewpoint: ");
+  Serial.print(dewpoint);
+  Serial.println(" C");
   }
 
 }
