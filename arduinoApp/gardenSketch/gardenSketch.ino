@@ -57,13 +57,15 @@ void loop() {
     prevMillis = curMillis;
     
     // Read sensor values
-    LDRValue = analogRead(lightSensorPin); // read light level from LDR
-    airHumidity = airSensor.readHumidity(); // read humidity from DHT
-    airTemperature = airSensor.readTemperature(); // read temperature from DHT
-    soilSensor.measure(&soilTemperature, &soilMoisture, &dewpoint);
+    sensorReadings();
   }
 
 }
 
 
-
+void sensorReadings() {
+  LDRValue = analogRead(lightSensorPin); // read light level from LDR
+  airHumidity = airSensor.readHumidity(); // read humidity from DHT sensor
+  airTemperature = airSensor.readTemperature(); // read temperature from DHT sensor
+  soilSensor.measure(&soilTemperature, &soilMoisture, &dewpoint); // read temperature and moisture from SHT10 sensor
+}
