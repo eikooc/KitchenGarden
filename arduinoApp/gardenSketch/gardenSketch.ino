@@ -69,3 +69,4 @@ void sensorReadings() {
   airTemperature = airSensor.readTemperature(); // read temperature from DHT sensor
   soilSensor.measure(&soilTemperature, &soilMoisture, &dewpoint); // read temperature and moisture from SHT10 sensor
 }
+

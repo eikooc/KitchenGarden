@@ -40,17 +40,17 @@ var bluetooth = {
         document.addEventListener('deviceready', this.onDeviceReady, false);
     },
     onDeviceReady: function() {
-        bluetoothSerial.connect(macAddress, app.onConnect, app.onDisconnect);
+        bluetoothSerial.connect(macAddress, bluetooth.onConnect, bluetooth.onDisconnect);
     },
     onConnect: function() {
-        bluetoothSerial.subscribe("\n", app.onMessage, app.subscribeFailed);
+        bluetoothSerial.subscribe("\n", bluetooth.onMessage, bluetooth.subscribeFailed);
         alert("Connected to " + macAddress + ".");
     }, 
     onDisconnect: function() {
         alert("Disconnected.");
     },
     onMessage: function(data) {
-        counter.innerHTML = data;        
+        alert("data");       
     },
     subscribeFailed: function() {
         alert("subscribe failed");

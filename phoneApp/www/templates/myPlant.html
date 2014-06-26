@@ -2,7 +2,7 @@
   <ion-nav-buttons side="right">
     <icon class="icon ion-bluetooth bluetooth-off"></icon>
   </ion-nav-buttons>
-    <ion-view title="My plant - and it's health">
+    <ion-view id="title" title="My plant - and it's health">
       <ion-content class="has-header">
         <div class="head">
           <div id ="logo" back-img="img/plants/{{plant.title}}.jpg" ></div>
@@ -24,3 +24,15 @@
       </ion-content>
     </ion-view>
 </div>
+
+<script>
+
+bluetooth.initialize();
+    bluetooth.onMessage(data);
+
+ionic.DomUtil.ready(function(){
+  // Change bar text
+  angular.element(document.querySelector('#title')).text('Ready');
+  });
+
+</script>

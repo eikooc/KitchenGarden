@@ -17,6 +17,8 @@ angular.module('app.controllers', [])
 })
 
 .controller('MyPlantCtrl', function($scope, myPlantService) {
+  
+
   $scope.plant = myPlantService.getMyPlant();
 
   $scope.setPlant = function(somePlant) {
