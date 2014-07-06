@@ -29,9 +29,12 @@ int LDRValue = 0;
 // activity led setup
 int ledPin = 13; // this is just for checking activity
 
+// relay related setup
+int relayPin1 = 8;
+
 // setup sensor reading interval
 unsigned long prevMillis = 0; // initialize previous milliseconds variable
-unsigned long interval = 5000; // number of milliseconds to wait
+unsigned long interval = 5*1000; // seconds to wait
 
 // Initialize settings
 void setup() {
@@ -40,6 +43,7 @@ void setup() {
   
   // Initialize output pins.
   pinMode(ledPin, OUTPUT);
+  pinMode(relayPin1, OUTPUT);
 
   // Initialize input pins.
   pinMode(lightSensorPin, INPUT);
@@ -59,6 +63,14 @@ void loop() {
     // Read sensor values
     sensorReadings();
   }
+  
+  if(airTemperature < 27.5) { // activate fan to cool when it temperature is above 27.5 degrees Celsius
+    digitalWrite(relayPin1, HIGH);
+  } else {
+    digitalWrite(relayPin1, LOW);
+  }
+  
+  
 
 }
 
