@@ -29,7 +29,7 @@ int LDRValue = 0;
 float goodLDRValue = 700;
 
 // activity led setup
-int ledPin = 13; // this is just for checking activity
+#define ledPin 13 // this is just for checking activity
 
 // relay related setup
 #define relayPin1 8
@@ -64,6 +64,7 @@ void loop() {
   if(now - then > interval) 
   {
     then = now;
+    digitalWrite(ledPin, HIGH);
     
     // Read sensor values
     sensorReadings();
@@ -78,7 +79,8 @@ void loop() {
       digitalWrite(relayPin1, HIGH);
     }
     
-    if (LDRValue > goodLDRValue) {
+    if (LDRValue < goodLDRValue) // activate relay 2 when the light intensity is below the defined good light intensity
+    {
       digitalWrite(relayPin2, LOW);
     }
     else
@@ -87,6 +89,8 @@ void loop() {
     }
   
   }
+  
+  digitalWrite(ledPin, LOW);
   
 
 }
