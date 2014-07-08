@@ -20,6 +20,7 @@ float dewpoint;
 DHT airSensor(DHTPIN, DHTTYPE); // setup DHT sensor
 float airHumidity = 0;
 float airTemperature = 0;
+float goodAirTemperature = 28.15;
 
 // light related setup
 #define lightSensorPin A0 // Set to whereever light sensor is connected
@@ -30,10 +31,11 @@ int LDRValue = 0;
 int ledPin = 13; // this is just for checking activity
 
 // relay related setup
-int relayPin1 = 8;
+#define relayPin1 8
+#define relayPin2 9
 
 // setup sensor reading interval
-unsigned long prevMillis = 0; // initialize previous milliseconds variable
+unsigned long then = 0; // initialize previous milliseconds variable
 unsigned long interval = 5*1000; // seconds to wait
 
 // Initialize settings
@@ -44,6 +46,7 @@ void setup() {
   // Initialize output pins.
   pinMode(ledPin, OUTPUT);
   pinMode(relayPin1, OUTPUT);
+  pinMode(relayPin2, OUTPUT);
 
   // Initialize input pins.
   pinMode(lightSensorPin, INPUT);
@@ -54,22 +57,35 @@ void setup() {
 
 // Main loop
 void loop() { 
-  unsigned long curMillis = millis();
+  unsigned long now = millis();
 
   // only read values every 1000 milliseconds
-  if(curMillis - prevMillis > interval) {
-    prevMillis = curMillis;
+  if(now - then > interval) 
+  {
+    then = now;
     
     // Read sensor values
     sensorReadings();
-  }
+    
+    // React on sensor values
+    if (airTemperature > goodAirTemperature) // activate fan to cool when the temperature is above the defined good temperature in degrees Celsius
+    { 
+      digitalWrite(relayPin1, LOW);
+    } 
+    else 
+    {
+      digitalWrite(relayPin1, HIGH);
+    }
+    
+    if (LDRValue < 700) {
+      digitalWrite(relayPin2, LOW);
+    }
+    else
+    {
+      digitalWrite(relayPin2, HIGH);
+    }
   
-  if(airTemperature < 27.5) { // activate fan to cool when it temperature is above 27.5 degrees Celsius
-    digitalWrite(relayPin1, HIGH);
-  } else {
-    digitalWrite(relayPin1, LOW);
   }
-  
   
 
 }
@@ -82,3 +98,6 @@ void sensorReadings() {
   soilSensor.measure(&soilTemperature, &soilMoisture, &dewpoint); // read temperature and moisture from SHT10 sensor
 }
 
+void setGoodAirTemperature(int value) {
+  goodAirTemperature = value;
+}
