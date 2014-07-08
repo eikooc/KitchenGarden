@@ -26,6 +26,7 @@ float goodAirTemperature = 28.15;
 #define lightSensorPin A0 // Set to whereever light sensor is connected
 int light_threshold = 500; // Threshold for when to report that light is not enough
 int LDRValue = 0;
+float goodLDRValue = 700;
 
 // activity led setup
 int ledPin = 13; // this is just for checking activity
@@ -77,7 +78,7 @@ void loop() {
       digitalWrite(relayPin1, HIGH);
     }
     
-    if (LDRValue < 700) {
+    if (LDRValue > goodLDRValue) {
       digitalWrite(relayPin2, LOW);
     }
     else
@@ -98,6 +99,10 @@ void sensorReadings() {
   soilSensor.measure(&soilTemperature, &soilMoisture, &dewpoint); // read temperature and moisture from SHT10 sensor
 }
 
-void setGoodAirTemperature(int value) {
+void setGoodAirTemperature(float value) {
   goodAirTemperature = value;
+}
+
+void setGoodLDRValue(float value) {
+  goodLDRValue = value;
 }
