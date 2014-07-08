@@ -3,8 +3,13 @@ Arduino based self regulating kitchen garden
  
  */
 #include <DHT.h>
-
+#include <SoftwareSerial.h>
 #include <Sensirion.h>
+
+// bluetooth related setup
+#define bluetoothTx 0 // RX pin on Arduino
+#define bluetoothRx 1 // TX pin on Arduino
+SoftwareSerial bluetooth(bluetoothTx, bluetoothRx); // Setup bluefruit chip
 
 // soil related setup
 #define dataPin 3
@@ -42,8 +47,13 @@ unsigned long interval = 5*1000; // seconds to wait
 
 // Initialize settings
 void setup() {
-  // start serial
+  // Start serial
   Serial.begin(9600);
+  
+  // Initialize bluetooth
+  bluetooth.begin(9600);  // begin at baudrate
+  bluetooth.print("$$$");  // Enter command mode
+  delay(100);  // Short delay
   
   // Initialize output pins.
   pinMode(ledPin, OUTPUT);
@@ -92,6 +102,13 @@ void loop() {
   }
   
   digitalWrite(ledPin, LOW);
+  
+  if (bluetooth.find("c")) {
+    int data = bluetooth.parseInt();
+    
+    Serial.print("Received: ");
+    Serial.println(data);
+  }
   
 
 }
