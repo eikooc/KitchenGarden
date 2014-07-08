@@ -10,9 +10,10 @@ Arduino based self regulating kitchen garden
 #define dataPin 3
 #define clockPin 4
 Sensirion soilSensor = Sensirion(dataPin, clockPin);
-float soilTemperature;
-float soilMoisture;
+float soilTemperature = 0;
+float soilMoisture = 0;
 float dewpoint;
+float goodSoilTemperature = 25;
 
 // air temperature related setup
 #define DHTPIN 2        // Humidity and temperature sensor pin
@@ -105,6 +106,14 @@ void sensorReadings() {
 
 void setGoodAirTemperature(float value) {
   goodAirTemperature = value;
+}
+
+void setGoodSoilTemperature(float value) {
+  goodSoilTemperature = value;
+}
+
+void setGoodSoilMoisture(float value) {
+  goodLDRValue = value;
 }
 
 void setGoodLDRValue(float value) {
