@@ -10,17 +10,18 @@
         <h2 class="inset-text" id="sName">Scientific name: {{plant.title}}</h2>
         <h3>{{plant.description}}</h3>
       </div>
+	  {{plant.title}} needs 
       <div id="stats">
-        <icon class="icon ion-thermometer big-icon"></icon>
-        <h1>10 {{temperature}}</h1>
-        <icon class="icon ion-ios7-lightbulb big-icon"></icon>
-        <h1>16 {{light}}</h1>
-        <icon class="icon ion-waterdrop big-icon"></icon>
-        <h1>19 {{moisture}}</h1>
-      </div>
-      <li>Needs: water temperature light
-        <input type="text" value="75" class="dial">
-      </li>
+		  <div>
+		    <h1><icon class="icon ion-thermometer big-icon-red"></icon> 21{{temperature}}&degC</h1>
+		  </div>
+		  <div>
+		    <h1><icon class="icon ion-ios7-lightbulb big-icon-yellow"></icon> 500{{light}}</h1>
+		  </div>
+		  <div>
+		    <h1><icon class="icon ion-waterdrop big-icon-blue"></icon> 70{{moisture}}%</h1>
+		  </div>
+		</div>
       <div ng-controller="MyPlantCtrl">
         <button class="button button-full button-positive" ng-click="setPlant(plants[$location.path().slice(-1)])">Grow this plant</button>
       </div>
