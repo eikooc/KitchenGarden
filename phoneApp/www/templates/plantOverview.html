@@ -10,7 +10,7 @@
         <h2 class="inset-text" id="sName">Scientific name: {{plant.title}}</h2>
         <h3>{{plant.description}}</h3>
       </div>
-	  {{plant.title}} needs 
+	  <h2>{{plant.title}} needs the following parameters to grow optimally</h2>
       <div id="stats">
 		  <div>
 		    <h1><icon class="icon ion-thermometer big-icon-red"></icon> 21{{temperature}}&degC</h1>
@@ -23,7 +23,7 @@
 		  </div>
 		</div>
       <div ng-controller="MyPlantCtrl">
-        <button class="button button-full button-positive" ng-click="setPlant(plants[$location.path().slice(-1)])">Grow this plant</button>
+        <button id="grow" class="button button-full button-positive" ng-click="setPlant(plants[$location.path().slice(-1)])">Grow this plant</button>
       </div>
     </ion-content>
   </ion-view>
