@@ -21,10 +21,11 @@
 		</div>
       
     </ion-content>
-    <div ng-controller="MyPlantCtrl">
-      <ion-footer-bar>
-        <button class="button button-block button-positive" ng-click="setPlant(plants[$location.path().slice(-1)])">Grow this plant</button>
-      </ion-footer-bar>
-    </div>
+    
+      <div ng-controller="MyPlantCtrl">
+        <div class="bar bar-footer" animation="slide-in-left">
+          <button class="button button-block button-balanced" ng-click="setPlant(plants[$location.path().slice(-1)])">Grow this plant</button>
+        </div>
+      </div>
   </ion-view>
 </div>

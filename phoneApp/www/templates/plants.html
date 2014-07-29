@@ -25,7 +25,7 @@
 <script id="modal.html" type="text/ng-template">
   <div class="modal" ng-controller="ModalCtrl">
     <!-- Modal header bar -->
-    <ion-header-bar class="bar bar-secondary bar-positive">
+    <ion-header-bar class="bar bar-secondary bar-balanced">
       <h1 class="title">New Plant</h1>
       <button class="button button-clear button-clear" ng-click="close()">Cancel</button>
     </ion-header-bar>
@@ -36,23 +36,28 @@
         <div class="item item-divider">
           Plant info
         </div>
-        <label class="item item-input">
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Name of plant</span>
           <input type="text" placeholder="Title" ng-model="title" required>
         </label>
-        <label class="item item-input">
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Description</span>
           <input type="text" placeholder="Description" ng-model="description" required>
         </label>
-        <label class="item item-input">
-          <input type="text" placeholder="Temperature" ng-model="temperature" required>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Temperature</span>
+          <input type="text" placeholder="0-70" ng-model="temperature" required>
         </label>
-        <label class="item item-input">
-          <input type="text" placeholder="Moisture" ng-model="water" required>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Moisture</span>
+          <input type="text" placeholder="0-100" ng-model="water" required>
         </label>
-        <label class="item item-input">
-          <input type="text" placeholder="Lightlevel" ng-model="light" required>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Light level</span>
+          <input type="text" placeholder="0-1000" ng-model="light" required>
         </label>
         <div class="padding">
-          <button type="submit" class="button button-block" >Add to plant list</button>
+          <button type="submit" class="button button-block" >Add to list of plant schemas</button>
         </div>
       </form>
 
