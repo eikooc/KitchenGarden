@@ -7,24 +7,27 @@
       <div class="head">
         <div id="logo" back-img="img/plants/{{plant.title}}.jpg"></div>
         <h1 class="inset-text" id="head_name">{{plant.title}}</h1>
-        <h2 class="inset-text" id="sName">Scientific name: {{plant.title}}</h2>
+        <h2 class="inset-text" id="sName">Scientific name: {{plant.scientific}}</h2>
         <h3>{{plant.description}}</h3>
       </div>
 	  <h2>{{plant.title}} needs the following parameters to grow optimally</h2>
       <div id="stats">
 		  <div>
-		    <h1><icon class="icon ion-thermometer big-icon-red"></icon> 21{{temperature}}&degC</h1>
+		    <h1><icon class="icon ion-thermometer big-icon-red"></icon> {{plant.temperature}}&degC</h1>
 		  </div>
 		  <div>
-		    <h1><icon class="icon ion-ios7-lightbulb big-icon-yellow"></icon> 500{{light}}</h1>
+		    <h1><icon class="icon ion-ios7-lightbulb big-icon-yellow"></icon> {{plant.light}}</h1>
 		  </div>
 		  <div>
-		    <h1><icon class="icon ion-waterdrop big-icon-blue"></icon> 70{{moisture}}%</h1>
+		    <h1><icon class="icon ion-waterdrop big-icon-blue"></icon> {{plant.water}}%</h1>
 		  </div>
 		</div>
-      <div ng-controller="MyPlantCtrl">
-        <button id="grow" class="button button-full button-positive" ng-click="setPlant(plants[$location.path().slice(-1)])">Grow this plant</button>
-      </div>
+      
     </ion-content>
+    <div ng-controller="MyPlantCtrl">
+      <ion-footer-bar>
+        <button class="button button-block button-positive" ng-click="setPlant(plants[$location.path().slice(-1)])">Grow this plant</button>
+      </ion-footer-bar>
+    </div>
   </ion-view>
 </div>

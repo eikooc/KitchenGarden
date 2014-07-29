@@ -33,7 +33,7 @@ angular.module('app.controllers', [])
 })
 
 //
-.controller('MyController', function($scope, $ionicModal) {
+.controller('MyController', function($scope, $ionicModal, bluetoothService) {
 
   $scope.openModal = function() {
     $scope.modal.show();
@@ -47,6 +47,10 @@ angular.module('app.controllers', [])
     animation: 'slide-in-up',
     focusFirstInput: true
   });
+  $scope.bluetooth = function() {
+    bluetoothService.initialize();
+  };
+  
 
 })
 
@@ -54,14 +58,17 @@ angular.module('app.controllers', [])
 .controller('ModalCtrl', function($scope, plantListService) {
 
   var tmpArray = [];
-  $scope.submit = function(aTitle, aID, aDescription) {
-    if (!aTitle || !aID || !aDescription) { // Require all fields to be filled out
+  $scope.submit = function(aTitle, aID, aDescription, aTemperature, aWater, aLight) {
+    if (!aTitle || !aID || !aDescription || !aTemperature || !aWater || !aLight) { // Require all fields to be filled out
       return;
     }
     tmpArray = ({ // define temporary array
       title: aTitle,
       id: aID,
-      description: aDescription
+      description: aDescription,
+      temperature: aTemperature,
+      water: aWater,
+      light: aLight
     });
     plantListService.addPlant(tmpArray); // push to list
     $scope.modal.hide();
