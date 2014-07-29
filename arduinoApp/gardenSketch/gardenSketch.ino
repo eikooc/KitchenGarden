@@ -3,16 +3,22 @@ Arduino based self regulating kitchen garden
  
  */
 #include <DHT.h>
-
+#include <SoftwareSerial.h>
 #include <Sensirion.h>
+
+// bluetooth related setup
+#define bluetoothTx 0 // RX pin on Arduino
+#define bluetoothRx 1 // TX pin on Arduino
+SoftwareSerial bluetooth(bluetoothTx, bluetoothRx); // Setup bluefruit chip
 
 // soil related setup
 #define dataPin 3  // Humidity and temperature sensor pin for SHT10
 #define clockPin 4
 Sensirion soilSensor = Sensirion(dataPin, clockPin);
-float soilTemperature;
-float soilMoisture;
+float soilTemperature = 0;
+float soilMoisture = 0;
 float dewpoint;
+float goodSoilTemperature = 25;
 
 // air temperature related setup
 #define DHTPIN 2        // Humidity and temperature sensor pin for DHT22
@@ -20,26 +26,39 @@ float dewpoint;
 DHT airSensor(DHTPIN, DHTTYPE); // setup DHT sensor
 float airHumidity = 0;
 float airTemperature = 0;
+float goodAirTemperature = 28.15;
 
 // light related setup
 #define lightSensorPin A0 // Set to whereever light sensor is connected
 int light_threshold = 500; // Threshold for when to report that light is not enough
 int LDRValue = 0;
+float goodLDRValue = 700;
 
 // activity led setup
-int ledPin = 13; // this is just for checking activity
+#define ledPin 13 // this is just for checking activity
+
+// relay related setup
+#define relayPin1 8
+#define relayPin2 9
 
 // setup sensor reading interval
-unsigned long prevMillis = 0; // initialize previous milliseconds variable
-unsigned long interval = 5000; // number of milliseconds to wait
+unsigned long then = 0; // initialize previous milliseconds variable
+unsigned long interval = 5*1000; // seconds to wait
 
 // Initialize settings
 void setup() {
-  // start serial
+  // Start serial
   Serial.begin(9600);
+  
+  // Initialize bluetooth
+  bluetooth.begin(9600);  // begin at baudrate
+  bluetooth.print("$$$");  // Enter command mode
+  delay(100);  // Short delay
   
   // Initialize output pins.
   pinMode(ledPin, OUTPUT);
+  pinMode(relayPin1, OUTPUT);
+  pinMode(relayPin2, OUTPUT);
 
   // Initialize input pins.
   pinMode(lightSensorPin, INPUT);
@@ -50,15 +69,47 @@ void setup() {
 
 // Main loop
 void loop() { 
-  unsigned long curMillis = millis();
+  unsigned long now = millis();
 
   // only read values every 1000 milliseconds
-  if(curMillis - prevMillis > interval) {
-    prevMillis = curMillis;
+  if(now - then > interval) 
+  {
+    then = now;
+    digitalWrite(ledPin, HIGH);
     
     // Read sensor values
     sensorReadings();
+    
+    // React on sensor values
+    if (airTemperature > goodAirTemperature) // activate fan to cool when the temperature is above the defined good temperature in degrees Celsius
+    { 
+      digitalWrite(relayPin1, LOW);
+    } 
+    else 
+    {
+      digitalWrite(relayPin1, HIGH);
+    }
+    
+    if (LDRValue < goodLDRValue) // activate relay 2 when the light intensity is below the defined good light intensity
+    {
+      digitalWrite(relayPin2, LOW);
+    }
+    else
+    {
+      digitalWrite(relayPin2, HIGH);
+    }
+  
   }
+  
+  digitalWrite(ledPin, LOW);
+  
+  if (bluetooth.find("c")) {
+    int data = bluetooth.parseInt();
+    
+    Serial.print("Received: ");
+    Serial.println(data);
+  }
+  
 
 }
 
@@ -70,3 +121,18 @@ void sensorReadings() {
   soilSensor.measure(&soilTemperature, &soilMoisture, &dewpoint); // read temperature and moisture from SHT10 sensor
 }
 
+void setGoodAirTemperature(float value) {
+  goodAirTemperature = value;
+}
+
+void setGoodSoilTemperature(float value) {
+  goodSoilTemperature = value;
+}
+
+void setGoodSoilMoisture(float value) {
+  goodLDRValue = value;
+}
+
+void setGoodLDRValue(float value) {
+  goodLDRValue = value;
+}

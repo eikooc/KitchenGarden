@@ -1,5 +1,6 @@
 body {
   cursor: url('http://ionicframework.com/img/finger.png'), auto;
+  
 }
 
 .sides {
@@ -43,6 +44,7 @@ body {
 
 .container {
     background: #f8f8f8;
+	
 }
 
 a {
@@ -138,12 +140,10 @@ div[back-img]{
   margin-right: -4px;
 }
 
-#snapper{
-    width:100%;
-}
 
-#snapper div{
-    height:200px;
-    width:calc(100% / 3);
-    display:inline-block;
+
+#grow {
+     position: absolute;
+     bottom: -10px;
+     width: 100%;
 }
