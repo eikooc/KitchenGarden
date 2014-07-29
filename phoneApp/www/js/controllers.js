@@ -56,15 +56,15 @@ angular.module('app.controllers', [])
 
 // The modal that pops up to add new plants to the list.
 .controller('ModalCtrl', function($scope, plantListService) {
-
+  $scope.plants = plantListService.getPlants();
   var tmpArray = [];
-  $scope.submit = function(aTitle, aID, aDescription, aTemperature, aWater, aLight) {
-    if (!aTitle || !aID || !aDescription || !aTemperature || !aWater || !aLight) { // Require all fields to be filled out
+  $scope.submit = function(aTitle, aDescription, aTemperature, aWater, aLight) {
+    if (!aTitle || !aDescription || !aTemperature || !aWater || !aLight) { // Require all fields to be filled out
       return;
     }
     tmpArray = ({ // define temporary array
       title: aTitle,
-      id: aID,
+      id: $scope.plants.length,
       description: aDescription,
       temperature: aTemperature,
       water: aWater,
