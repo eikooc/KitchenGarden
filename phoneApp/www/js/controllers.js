@@ -20,6 +20,12 @@ angular.module('app.controllers', [])
   
 
   $scope.plant = myPlantService.getMyPlant();
+  
+  $scope.temperature = { 'data' : $scope.plant.temperature };
+  $scope.water = { 'data' : $scope.plant.water };
+  $scope.light = { 'data' : $scope.plant.light };
+  
+  
 
   $scope.setPlant = function(somePlant) {
     myPlantService.setMyPlant(somePlant); // set myPlant
@@ -50,6 +56,7 @@ angular.module('app.controllers', [])
   $scope.bluetooth = function() {
     bluetoothService.initialize();
   };
+  
   
 
 })

@@ -1,25 +1,47 @@
-<ion-view title="Customize the UI and stuff">
+<ion-view title="Customize the values of your schema" ng-controller="MyPlantCtrl">
   <ion-nav-buttons side="left">
     <button menu-toggle="left"class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
   
   <ion-content class="has-header">
-    <h1>FONTS, COLORS and MORE</h1>
-
+    <h1>Change the values of the currently selected schema</h1>
 <div class="list">
-<div class="range range-calm">
-  <i class="icon ion-waterdrop"></i>
-  <input type="range" name="moisture">
+<div class="item range range-assertive">
+    <i class="icon ion-thermometer"></i>
+    <input type="range" name="volume" min="0" max="65" ng-model="temperature.data">
+<h2>{{temperature.data}}</h2>
 </div>
 
 <div class="item range range-energized">
     <i class="icon ion-ios7-lightbulb"></i>
-    <input type="range" name="volume" min="0" max="100" value="33">
+    <input type="range" name="light" min="0" max="1000" ng-model="light.data">
+<h2>{{light.data}}</h2>
+</div>
+
+<div class="item range range-calm">
+  <i class="icon ion-waterdrop"></i>
+  <input type="range" name="water" min="0" max="100" ng-model="water.data">
+<h2>{{water.data}}</h2>
 </div>
   
-<div class="item range range-assertive">
-    <i class="icon ion-thermometer"></i>
-    <input type="range" name="volume" min="0" max="35" value="20">
+<div class="item item-toggle">
+     Arduino controls Temperature
+     <label class="toggle toggle-assertive">
+       <input type="checkbox" checked>
+       <div class="track">
+         <div class="handle"></div>
+       </div>
+     </label>
+</div>
+  
+<div class="item item-toggle">
+     Arduino controls Light
+     <label class="toggle toggle-energized">
+       <input type="checkbox" checked>
+       <div class="track">
+         <div class="handle"></div>
+       </div>
+     </label>
 </div>
 
 <div class="item item-toggle">
@@ -31,28 +53,8 @@
        </div>
      </label>
 </div>
-  
-  <div class="item item-toggle">
-     Arduino controls Light
-     <label class="toggle toggle-energized">
-       <input type="checkbox" checked>
-       <div class="track">
-         <div class="handle"></div>
-       </div>
-     </label>
-</div>
-  
-  <div class="item item-toggle">
-     Arduino controls Temperature
-     <label class="toggle toggle-assertive">
-       <input type="checkbox" checked>
-       <div class="track">
-         <div class="handle"></div>
-       </div>
-     </label>
-</div>
-</div>
 
+</div>
 
   </ion-content>
 </ion-view>
