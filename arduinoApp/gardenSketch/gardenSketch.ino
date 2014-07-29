@@ -7,7 +7,7 @@ Arduino based self regulating kitchen garden
 #include <Sensirion.h>
 
 // soil related setup
-#define dataPin 3
+#define dataPin 3  // Humidity and temperature sensor pin for SHT10
 #define clockPin 4
 Sensirion soilSensor = Sensirion(dataPin, clockPin);
 float soilTemperature;
@@ -15,8 +15,8 @@ float soilMoisture;
 float dewpoint;
 
 // air temperature related setup
-#define DHTPIN 2        // Humidity and temperature sensor pin
-#define DHTTYPE DHT22   // Model DHT 22 (AM2302)
+#define DHTPIN 2        // Humidity and temperature sensor pin for DHT22
+#define DHTTYPE DHT22   // Model DHT 22
 DHT airSensor(DHTPIN, DHTTYPE); // setup DHT sensor
 float airHumidity = 0;
 float airTemperature = 0;
