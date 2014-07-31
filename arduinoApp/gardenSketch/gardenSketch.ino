@@ -1,7 +1,8 @@
 /*
 Arduino based self regulating kitchen garden
- 
- */
+Created by: Jamie Neubert Pedersen
+version: 1.0
+*/
 #include <DHT.h>
 #include <SoftwareSerial.h>
 #include <Sensirion.h>
@@ -18,7 +19,7 @@ Sensirion soilSensor = Sensirion(dataPin, clockPin);
 float soilTemperature = 0;
 float soilMoisture = 0;
 float dewpoint;
-float goodSoilTemperature = 25;
+float goodSoilMoisture = 70;
 
 // air temperature related setup
 #define DHTPIN 2        // Humidity and temperature sensor pin for DHT22
@@ -40,6 +41,12 @@ float goodLDRValue = 700;
 // relay related setup
 #define relayPin1 8
 #define relayPin2 9
+#define relayPin3 10
+
+// booleans for checking if automation is required
+boolean autoMoisture = true;
+boolean autoAirTemperature = true;
+boolean autoLight = true;
 
 // setup sensor reading interval
 unsigned long then = 0; // initialize previous milliseconds variable
@@ -81,33 +88,60 @@ void loop() {
     sensorReadings();
     
     // React on sensor values
-    if (airTemperature > goodAirTemperature) // activate fan to cool when the temperature is above the defined good temperature in degrees Celsius
-    { 
-      digitalWrite(relayPin1, LOW);
-    } 
-    else 
-    {
-      digitalWrite(relayPin1, HIGH);
-    }
+    reactAirTemperature();
+    reactLight();
+    reactMoisture();
     
-    if (LDRValue < goodLDRValue) // activate relay 2 when the light intensity is below the defined good light intensity
-    {
-      digitalWrite(relayPin2, LOW);
-    }
-    else
-    {
-      digitalWrite(relayPin2, HIGH);
-    }
+    
+    
+    
   
   }
   
   digitalWrite(ledPin, LOW);
   
-  if (bluetooth.find("c")) {
+  if (bluetooth.find("t")) {
     int data = bluetooth.parseInt();
-    
-    Serial.print("Received: ");
-    Serial.println(data);
+    setGoodAirTemperature(data);
+  }
+  if (bluetooth.find("w")) {
+    int data = bluetooth.parseInt();
+    setGoodSoilMoisture(data);
+  }
+  if (bluetooth.find("l")) {
+    int data = bluetooth.parseInt();
+    setGoodLDRValue(data);
+  }
+  
+  if (bluetooth.find("m")) {
+    int data = bluetooth.parseInt();
+    if (data == 0)
+    {
+      autoAirTemperature = false;
+    }
+    if (data == 1)
+    {
+      autoLight = false;
+    }
+    if (data == 2)
+    {
+      autoMoisture = false;
+    }
+  }
+  if (bluetooth.find("a")) {
+    int data = bluetooth.parseInt();
+    if (data == 0)
+    {
+      autoAirTemperature = true;
+    }
+    if (data == 1)
+    {
+      autoLight = true;
+    }
+    if (data == 2)
+    {
+      autoMoisture = true;
+    }
   }
   
 
@@ -125,14 +159,55 @@ void setGoodAirTemperature(float value) {
   goodAirTemperature = value;
 }
 
-void setGoodSoilTemperature(float value) {
-  goodSoilTemperature = value;
-}
-
 void setGoodSoilMoisture(float value) {
-  goodLDRValue = value;
+  goodSoilMoisture = value;
 }
 
 void setGoodLDRValue(float value) {
   goodLDRValue = value;
+}
+
+void reactAirTemperature() {
+  if (autoAirTemperature == false)
+  {
+    return;
+  }
+  if (airTemperature > goodAirTemperature) // activate fan to cool when the temperature is above the defined good temperature in degrees Celsius
+    { 
+      digitalWrite(relayPin1, LOW);
+    } 
+    else 
+    {
+      digitalWrite(relayPin1, HIGH);
+    }
+}
+
+void reactLight() {
+  if (autoLight == false)
+  {
+    return;
+  }
+  if (LDRValue < goodLDRValue) // activate relay 2 when the light intensity is below the defined good light intensity
+    {
+      digitalWrite(relayPin2, LOW);
+    }
+    else
+    {
+      digitalWrite(relayPin2, HIGH);
+    }
+}
+
+void reactMoisture() {
+  if (autoMoisture == false)
+  {
+    return;
+  }
+  if (soilMoisture < goodSoilMoisture) // activate relay 2 when the light intensity is below the defined good light intensity
+    {
+      digitalWrite(relayPin3, LOW);
+    }
+    else
+    {
+      digitalWrite(relayPin3, HIGH);
+    }
 }
