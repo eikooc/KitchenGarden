@@ -4,7 +4,7 @@
     <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
   <ion-nav-buttons side="right" ng-controller="MyController">
-	 <div side="right" class="button button-icon ion-bluetooth big-icon" title="'newPlant'" ng-click="bluetooth()"></div>
+	 <div side="right" class="button button-icon ion-bluetooth big-icon" title="'newPlant'" ng-click="scan()"></div>
   </ion-nav-buttons>
       <ion-content class="has-header">
         <div class="head">
@@ -23,6 +23,18 @@
 		  </div>
 		  <div>
 		    <h1><icon class="icon ion-waterdrop big-icon-blue"></icon> {{plant.water}}%</h1>
+		  </div>
+		</div>
+		<h3>My {{plant.title}} should have the following status:</h3>
+        <div id="stats">
+		  <div>
+		    <h1><icon class="icon ion-thermometer big-icon-red"></icon> {{received.temperature}}&degC</h1>
+		  </div>
+		  <div>
+		    <h1><icon class="icon ion-ios7-lightbulb big-icon-yellow"></icon> {{received.light}}</h1>
+		  </div>
+		  <div>
+		    <h1><icon class="icon ion-waterdrop big-icon-blue"></icon> {{received.water}}%</h1>
 		  </div>
 		</div>
       </ion-content>

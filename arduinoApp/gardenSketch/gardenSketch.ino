@@ -92,7 +92,7 @@ void loop() {
     reactLight();
     reactMoisture();
     
-    
+    bluetooth.write(airTemperature+","+LDRValue+","+soilMoisture+".");
     
     
   
@@ -202,9 +202,11 @@ void reactMoisture() {
   {
     return;
   }
-  if (soilMoisture < goodSoilMoisture) // activate relay 2 when the light intensity is below the defined good light intensity
+  if (soilMoisture < goodSoilMoisture) // activate relay 2 when the moisture level is below the defined good moisture level
     {
       digitalWrite(relayPin3, LOW);
+      sleep(1000);
+      digitalWrite(relayPin3, HIGH);
     }
     else
     {

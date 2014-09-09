@@ -3,7 +3,9 @@ var app = angular.module('app', [
   'ionic',
   'app.controllers',
   'app.services',
-  'app.directives'
+  'app.directives',
+  'ngCordova',
+  'demo.bluetooth.ctrl',
 ])
 
 // Define the run method
