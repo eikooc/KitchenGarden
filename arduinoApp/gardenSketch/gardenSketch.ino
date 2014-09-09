@@ -104,13 +104,13 @@ void loop() {
     int data = bluetooth.parseInt();
     setGoodAirTemperature(data);
   }
-  if (bluetooth.find("w")) {
-    int data = bluetooth.parseInt();
-    setGoodSoilMoisture(data);
-  }
   if (bluetooth.find("l")) {
     int data = bluetooth.parseInt();
     setGoodLDRValue(data);
+  }
+  if (bluetooth.find("w")) {
+    int data = bluetooth.parseInt();
+    setGoodSoilMoisture(data);
   }
   
   if (bluetooth.find("m")) {
