@@ -35,7 +35,7 @@ angular.module('app.controllers', [])
 		$scope.plant.temperature = $scope.temperature.data;
 		$scope.plant.light = $scope.light.data;
 		$scope.plant.water = $scope.water.data;
-		$cordovaBluetoothSerial.write("t"+$scope.temperature);
+		$cordovaBluetoothSerial.write("t"+$scope.temperature.data+"w"+$scope.water.data+"l"+$scope.light.data);
 	}
   
 
